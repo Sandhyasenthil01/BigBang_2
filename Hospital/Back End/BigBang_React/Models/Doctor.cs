@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BigBang_React.Models
 {
     public class Doctor
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int   Doctor_Id { get; set; }
         public string? Doctor_Name { get; set; }
@@ -16,6 +18,8 @@ namespace BigBang_React.Models
 
         public string? Password { get; set; }
 
-        public ICollection<Patients> Patients { get; set; }
+        public bool IsActive { get; set; } = false;
+        public ICollection<Patients>? Patients { get; set; }
+
     }
 }

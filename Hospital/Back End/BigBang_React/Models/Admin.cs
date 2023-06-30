@@ -11,3 +11,4 @@ namespace BigBang_React.Models
         public string Admin_Password { get; set; }
     }
 }
+  

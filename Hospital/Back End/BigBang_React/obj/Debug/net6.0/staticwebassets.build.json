@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "sQjZcjCVu59EkRrko2pRjNjvuVMgvGEZIxeZGMSXcIY=",
+  "Hash": "v5cTRuDdcxQ2fPqRdDsslRY26evxxmlnbslpSKLE+3o=",
   "Source": "BigBang_React",
   "BasePath": "_content/BigBang_React",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "BigBang_React\\wwwroot",
+      "Source": "BigBang_React",
+      "ContentRoot": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\",
+      "BasePath": "_content/BigBang_React",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\uploads\\9842809c-049b-4b91-8c69-6395a8943e18.jpg",
+      "SourceId": "BigBang_React",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\",
+      "BasePath": "_content/BigBang_React",
+      "RelativePath": "uploads/9842809c-049b-4b91-8c69-6395a8943e18.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\9842809c-049b-4b91-8c69-6395a8943e18.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\uploads\\c59c7471-7cb8-43d8-887b-b03d45639794.jpg",
+      "SourceId": "BigBang_React",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\",
+      "BasePath": "_content/BigBang_React",
+      "RelativePath": "uploads/c59c7471-7cb8-43d8-887b-b03d45639794.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c59c7471-7cb8-43d8-887b-b03d45639794.jpg"
+    }
+  ]
 }

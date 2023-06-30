@@ -10,5 +10,9 @@ namespace BigBang_React.Repository
         Task<Doctor> CreateDoctor([FromForm] Doctor doctor, IFormFile imageFile);
         Task<Doctor> PutDoctor(int Doctor_id, Doctor doctor, IFormFile imageFile);
         public Doctor DeleteDoctor(int Doctor_Id);
+
+
+        Task<bool> ActivateDoctor(int Doctor_Id);
+        Task<bool> DeactivateDoctor(int Doctor_Id);
     }
 }

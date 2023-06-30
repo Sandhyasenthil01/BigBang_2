@@ -13,8 +13,8 @@ namespace BigBang_React.Controllers
 
         public DoctorController(IDoctor doctor)
         {
-            this.doctor = this.doctor = doctor;
-            ;
+         this.doctor = doctor;
+            
         }
 
         [HttpGet]
@@ -39,8 +39,8 @@ namespace BigBang_React.Controllers
             try
             {
                 var createdCourse = await doctor.CreateDoctor(doc, imageFile);
-                return CreatedAtAction("Get", new { id = createdCourse.Doctor_Id }, createdCourse);
-
+                //  return CreatedAtAction("Get", new { id = createdCourse.Doctor_Id }, createdCourse);
+                return Created("Get", createdCourse);
             }
             catch (ArgumentException ex)
             {
@@ -48,12 +48,12 @@ namespace BigBang_React.Controllers
                 return BadRequest(ModelState);
             }
         }
-        [HttpPut("{DoctorId}")]
+        [HttpPut("{doctorid}")]
         public async Task<ActionResult<Doctor>> Put(int doctorid, [FromForm] Doctor doc, IFormFile imageFile)
         {
             try
             {
-                var updatedCake = await doc.UpdateDoctor(doctorid, doc, imageFile);
+                var updatedCake = await doctor.PutDoctor(doctorid, doc, imageFile);
                 if (updatedCake == null)
                 {
                     return NotFound();
@@ -68,6 +68,52 @@ namespace BigBang_React.Controllers
             }
         }
 
+
+        [HttpPut("{doctorId}/activate")]
+        public async Task<ActionResult<Doctor>> Putt(int doctorid, [FromForm] Doctor doc, IFormFile imageFile)
+        {
+            try
+            {
+                var updatedDoctor = await doctor.PutDoctor(doctorid, doc, imageFile);
+                if (updatedDoctor == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(updatedDoctor);
+            }
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpPut("{doctorIdd}/deactive")]
+        public async Task<ActionResult<Doctor>> Puts(int doctoridd, [FromForm] Doctor doc, [FromForm] IFormFile imageFile)
+        {
+            try
+            {
+                var updatedDoctor = await doctor.PutDoctor(doctoridd, doc, imageFile);
+                if (updatedDoctor == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(updatedDoctor);
+            }
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpDelete("{Doctor_Id}")]
+        public Doctor? DeleteCake(int Doctor_Id)
+        {
+            return doctor.DeleteDoctor(Doctor_Id);
+        }
 
     }
 }
