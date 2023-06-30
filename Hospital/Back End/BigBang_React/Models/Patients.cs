@@ -1,6 +1,19 @@
-﻿namespace BigBang_React.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BigBang_React.Models
 {
     public class Patients
     {
+        [Key]
+
+        public int Patient_Id { get; set; }
+        public string Patient_Name { get; set; }
+        public int Patient_Age { get; set; }
+        public string Gender { get; set; }
+        public string Health_Issue { get; set; }
+        public long Phone_number { get; set; }
+        public string Address { get; set; }
+        public string Password { get; set; }
+
     }
 }

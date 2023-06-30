@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj": {}
+    "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj": {}
   },
   "projects": {
-    "C:\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj": {
+    "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj",
         "projectName": "BigBang_React",
-        "projectPath": "C:\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj",
+        "projectPath": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\BigBang_React.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Hospital\\Back End\\BigBang_React\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,16 +40,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[7.0.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.8, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
