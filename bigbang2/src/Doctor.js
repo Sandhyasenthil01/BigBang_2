@@ -200,7 +200,7 @@ export class Doctor extends Component{
           } = this.state;
       
         return(
-       
+           
 
             <div className="container">
  <h2 className="mb-4">Doctor List</h2>
