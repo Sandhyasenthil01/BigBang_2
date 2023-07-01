@@ -64,6 +64,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<HospitalContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 builder.Services.AddScoped<IDoctor, DoctorRepo>();
 builder.Services.AddScoped<IPatient, PatientRepo>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Corspolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling =
@@ -79,10 +88,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("Corspolicy");
+app.UseStaticFiles();
 app.MapControllers();
 
 app.Run();

@@ -69,45 +69,8 @@ namespace BigBang_React.Controllers
         }
 
 
-        [HttpPut("{doctorId}/activate")]
-        public async Task<ActionResult<Doctor>> Putt(int doctorid, [FromForm] Doctor doc, IFormFile imageFile)
-        {
-            try
-            {
-                var updatedDoctor = await doctor.PutDoctor(doctorid, doc, imageFile);
-                if (updatedDoctor == null)
-                {
-                    return NotFound();
-                }
 
-                return Ok(updatedDoctor);
-            }
-            catch (ArgumentException ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return BadRequest(ModelState);
-            }
-        }
-
-        [HttpPut("{doctorIdd}/deactive")]
-        public async Task<ActionResult<Doctor>> Puts(int doctoridd, [FromForm] Doctor doc, [FromForm] IFormFile imageFile)
-        {
-            try
-            {
-                var updatedDoctor = await doctor.PutDoctor(doctoridd, doc, imageFile);
-                if (updatedDoctor == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(updatedDoctor);
-            }
-            catch (ArgumentException ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return BadRequest(ModelState);
-            }
-        }
+     
 
         [HttpDelete("{Doctor_Id}")]
         public Doctor? DeleteCake(int Doctor_Id)

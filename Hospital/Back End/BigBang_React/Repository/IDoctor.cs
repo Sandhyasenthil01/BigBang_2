@@ -12,7 +12,5 @@ namespace BigBang_React.Repository
         public Doctor DeleteDoctor(int Doctor_Id);
 
 
-        Task<bool> ActivateDoctor(int Doctor_Id);
-        Task<bool> DeactivateDoctor(int Doctor_Id);
     }
 }

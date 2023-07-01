@@ -18,7 +18,8 @@ namespace BigBang_React.Models
 
         public string? Password { get; set; }
 
-        public bool IsActive { get; set; } = false;
+
+        public string? status { get; set; } 
         public ICollection<Patients>? Patients { get; set; }
 
     }

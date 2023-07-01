@@ -48,8 +48,10 @@ namespace BigBang_React.Repository
             {
                 await imageFile.CopyToAsync(stream);
             }
+            doctor.status = "Not Admitted";
 
             doctor.Doc_image = fileName;
+
 
             _hospContext.Doctors.Add(doctor);
             await _hospContext.SaveChangesAsync();
@@ -113,27 +115,7 @@ namespace BigBang_React.Repository
             }
         }
 
-        public async Task<bool> ActivateDoctor(int doctorId)
-        {
-            var doctor = await _hospContext.Doctors.FindAsync(doctorId);
-            if (doctor == null)
-                return false;
-
-            doctor.IsActive = true;
-            await _hospContext.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> DeactivateDoctor(int doctorId)
-        {
-            var doctor = await _hospContext.Doctors.FindAsync(doctorId);
-            if (doctor == null)
-                return false;
-
-            doctor.IsActive = false;
-            await _hospContext.SaveChangesAsync();
-            return true;
-        }
+     
 
 
     }

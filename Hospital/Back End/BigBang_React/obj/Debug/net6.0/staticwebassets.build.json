@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "v5cTRuDdcxQ2fPqRdDsslRY26evxxmlnbslpSKLE+3o=",
+  "Hash": "xwoebTzz/wWL2MDF7sjv/y70aP3bR6aD7ichbSbiG24=",
   "Source": "BigBang_React",
   "BasePath": "_content/BigBang_React",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\9842809c-049b-4b91-8c69-6395a8943e18.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\uploads\\b97efeac-6dcc-49f4-a36e-e14de1b2ba07.jpg",
+      "SourceId": "BigBang_React",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\",
+      "BasePath": "_content/BigBang_React",
+      "RelativePath": "uploads/b97efeac-6dcc-49f4-a36e-e14de1b2ba07.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\b97efeac-6dcc-49f4-a36e-e14de1b2ba07.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Source\\Repos\\BigBang_2\\Hospital\\Back End\\BigBang_React\\wwwroot\\uploads\\c59c7471-7cb8-43d8-887b-b03d45639794.jpg",
