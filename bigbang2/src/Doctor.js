@@ -198,7 +198,7 @@ export class Doctor extends Component{
             doctor_Id,
            
           } = this.state;
-      
+                 
         return(
            
 
