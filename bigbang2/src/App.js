@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Login from './Login';
 import {Doctor} from './Doctor';
-import {Patient} from './Patient';
-
+import Patient from './Patient';
+import Admin from './Admin';
 function App() {
   return (
 <div>
@@ -26,6 +26,9 @@ function App() {
         <li class="nav-item">
           <a class="nav-link" href="/patient">Patient</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Admin">Admin</a>
+        </li>
       </ul>
       <span class="navbar-text">
         <a class="nav-link" href="/Login">Login</a>
@@ -42,7 +45,8 @@ function App() {
   <Route path='/doctor' Component={Doctor}/>
   <Route path='/patient' Component={Patient}/>
   <Route path='/Login' Component={Login}/>
- 
+  <Route path='/Admin' Component={Admin}/>
+
  </Routes>
  </BrowserRouter>
      </div>
