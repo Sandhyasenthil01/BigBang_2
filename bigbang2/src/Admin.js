@@ -29,7 +29,7 @@ const ProceedLoginusingAPI = (e) => {
                 console.log(resp)
                 toast.success('Success');
                 localStorage.setItem('token',resp);
-                navigate('/doctor')                          
+                navigate('/Adminpage')                          
             }).catch((err) => {
                 toast.error('Login Failed due to :' + err.message);
             });
@@ -55,11 +55,11 @@ const ProceedLoginusingAPI = (e) => {
                 <form onSubmit={ProceedLoginusingAPI} className="container">
                     <div className="card">
                         <div className="card-header">
-                            <h2>User Login</h2>
+                            <h2>Admin Login</h2>
                         </div>
                         <div className="card-body">
                         <div className="form-group">
-                                <label>User Name <span className="errmsg">*</span></label>
+                                <label>Admin Name <span className="errmsg">*</span></label>
                                 <input value={admin_name} onChange={e => userNameupdate(e.target.value)} className="form-control"></input>
                             </div>
                             <div className="form-group">

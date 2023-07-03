@@ -15,8 +15,8 @@ export class Doctor extends Component{
           specialization: "",
           gender: "",
           experience:0,
-          user_name:"",
-          user_password:"",
+          doc_name:"",
+          doc_password:"",
           status:null,
           doctor_Id: null,
         };
@@ -60,10 +60,10 @@ export class Doctor extends Component{
         this.setState({ experience: event.target.value });
       };
       handleusernameInputChange=(event) => {
-        this.setState({ user_name: event.target.value });
+        this.setState({ doc_name: event.target.value });
       };
       handlepassInputChange=(event) => {
-        this.setState({ user_password: event.target.value });
+        this.setState({ doc_password: event.target.value });
       };
       handlestatusInputChange=(event) => {
         this.setState({ status: event.target.value });
@@ -73,13 +73,13 @@ export class Doctor extends Component{
         this.setState({ doc_image: file });
       };
       handledocpassInputChange=(event) => {
-        this.setState({user_password : event.target.value });
+        this.setState({doc_password : event.target.value });
       };
       handledocexperiInputChange=(event) => {
         this.setState({experience : event.target.value });
       };
       handledocexperipasInputChange=(event) => {
-        this.setState({user_name : event.target.value });
+        this.setState({doc_name : event.target.value });
       };
       handledocgenInputChange=(event) => {
         this.setState({gender : event.target.value });
@@ -94,14 +94,14 @@ export class Doctor extends Component{
         this.setState({doctor_Id : event.target.value });
       };
       createItem = () => {
-        const { doctor_Name, specialization, gender,experience,user_name,user_password, doc_image } = this.state;
+        const { doctor_Name, specialization, gender,experience,doc_name,doc_password, doc_image } = this.state;
         const formData = new FormData();
         formData.append("doctor_Name", doctor_Name);
         formData.append("specialization", specialization);
         formData.append("gender", gender);
         formData.append("experience", experience);
-        formData.append("user_name", user_name);
-        formData.append("user_password", user_password);
+        formData.append("doc_name", doc_name);
+        formData.append("doc_password", doc_password);
 
         formData.append("imageFile", doc_image);
       
@@ -126,8 +126,8 @@ export class Doctor extends Component{
               specialization: "",
               experience: 0,
               gender:"",
-              user_name:"",
-              user_password:"",
+              doc_name:"",
+              doc_password:"",
               doc_image: null,
             });
           })
@@ -136,7 +136,7 @@ export class Doctor extends Component{
           });
       };
       editItem = () => {
-        const { doctor_Id,doctor_Name, specialization, gender,experience,user_name,user_password, doc_image  } = this.state;
+        const { doctor_Id,doctor_Name, specialization, gender,experience,doc_name,doc_password, doc_image  } = this.state;
       
         const formData = new FormData();
         formData.append('doctor_Id', doctor_Id);
@@ -145,8 +145,8 @@ export class Doctor extends Component{
         formData.append('specialization', specialization);
         formData.append('gender', gender);
         formData.append('experience', experience);
-        formData.append('user_name', user_name);
-        formData.append('user_password', user_password);
+        formData.append('doc_name', doc_name);
+        formData.append('doc_password', doc_password);
         formData.append('imageFile', doc_image);
       
         axios.put(variables.API_URL + `Doctor/${doctor_Id}`, formData, {
@@ -165,8 +165,8 @@ export class Doctor extends Component{
               specialization: '',
               gender: "",
               experience:0,
-              user_name:"",
-              user_password:"",
+              doc_name:"",
+              doc_password:"",
               doc_image: null,
             });
       
@@ -205,8 +205,8 @@ export class Doctor extends Component{
             specialization,
             gender,
             experience,
-            user_name,
-            user_password,
+            doc_name,
+            doc_password,
             status,
             doctor_Id,
            
@@ -314,17 +314,17 @@ export class Doctor extends Component{
         type="text"
         className="form-control"
         id="experience"
-        value={user_name}
+        value={doc_name}
         onChange={this.handleusernameInputChange}
       />
     </div>
     <div className="form-group">
-      <label htmlFor="user_password">Doctor user_password:</label>
+      <label htmlFor="doc_password">Doctor doc_password:</label>
       <input
         type="text"
         className="form-control"
-        id="user_password"
-        value={user_password}
+        id="doc_password"
+        value={doc_password}
         onChange={this.handlepassInputChange}
       />
     </div>
@@ -404,17 +404,17 @@ export class Doctor extends Component{
               type="text"
               className="form-control"
               id="experience"
-              value={user_name}
+              value={doc_name}
               onChange={this.handledocexperipasInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="user_password">Doctor user_password:</label>
+            <label htmlFor="doc_password">Doctor doc_password:</label>
             <input
               type="text"
               className="form-control"
-              id="user_password"
-              value={user_password}
+              id="doc_password"
+              value={doc_password}
               onChange={this.handledocpassInputChange}
             />
           </div>
