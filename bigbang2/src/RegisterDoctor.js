@@ -2,8 +2,10 @@ import React ,{Component}from "react";
 import { variables } from "./Variable";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from 'react-router-dom';
-
+import './Marquee.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import './Gallery.css';
+import Navbar from './Navbar';
 
 import axios from 'axios';
 export class RegisterDoctor extends Component{
@@ -72,6 +74,8 @@ export class RegisterDoctor extends Component{
           })
           .then((data) => {
             console.log("Doctor Created:", data);
+            alert('Success');
+
             toast.success('Posted Successfully', {
               style: {
                 background: '#87FC57',
@@ -131,9 +135,38 @@ export class RegisterDoctor extends Component{
            
           } = this.state;
           return(
-            <div className="container">
+    <div>
+        <Navbar />
+
+      <br></br> <br></br> <br></br> 
+    <div className="gallery">
+    <h1 className="gallery-title">Apollo Healthcare for Doctors</h1>
+
+      <div className="image-container">
+        <img src=" https://i.pinimg.com/474x/7b/b4/8b/7bb48b16c3481ebe7e0ecbe58119982d.jpg" alt="Image 1" className="gallery-image" />
+        <div className="image-overlay">
+          <div className="image-text">Grow</div>
+        </div>
+      </div>
+      <div className="image-container">
+        <img src="https://i.pinimg.com/474x/46/3e/e8/463ee85d7aecb285c201b3ef94549e03.jpg" alt="Image 2" className="gallery-image" />
+        <div className="image-overlay">
+          <div className="image-text">Heal</div>
+        </div>
+      </div>
+      <div className="image-container">
+        <img src="https://i.pinimg.com/474x/ea/bd/79/eabd7927022213124fa25d713e538db6.jpg" alt="Image 3" className="gallery-image" />
+        <div className="image-overlay">
+          <div className="image-text">Trust</div>
+        </div>
+      </div>
+    </div>
+      <div className="marquee">
+      <p> All eligible Health Facilities can register for Digital Health Incentive Scheme.Please drop a mail to abdm.incentives@nha.gov.in in case of issues in registration for Digital Health Incentive Scheme.</p>
+    </div>
+            <div className="container d-flex justify-content-center align-items-center">
       
-          <div className="col-4 mx-auto">
+          <div className="col-8 mx-auto">
           <div className="card" style={{backgroundImage: "url('')",
   backgroundSize: 'cover',backgroundPosition: 'center',backgroundColor: '#eaf2f8', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
         <div className="card-body">
@@ -210,12 +243,16 @@ export class RegisterDoctor extends Component{
               onChange={this.handlepassInputChange}
             />
           </div>
-          <Link className="btn btn-primary"to={'/doctor'} style={{ backgroundColor: '#1976d2' }} onClick={this.createItem}>
+          <Link className="btn btn-primary"to={'/login'} style={{ backgroundColor: '#1976d2' }} onClick={this.createItem}>
             Create Doctor
           </Link>
         </div>
       </div>
       </div>
+  </div>
+
+  
+
   </div>
           )
     }

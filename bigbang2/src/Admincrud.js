@@ -3,10 +3,10 @@ import { variables } from "./Variable";
 import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import axios from 'axios';
 import Navbar from './Navbar';
 
-import axios from 'axios';
-export class Doctor extends Component{
+export class Admincrud extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +45,6 @@ export class Doctor extends Component{
             console.error('Error fetching Doctors:', error);
           });
       }
-     
       handledocInputChange= (event) => {
         this.setState({ doctor_Name: event.target.value });
       };
@@ -144,7 +143,6 @@ export class Doctor extends Component{
         const formData = new FormData();
         formData.append('doctor_Id', doctor_Id);
         formData.append('doctor_Name', doctor_Name);
-        formData.append('doc', 'doctor value'); 
         formData.append('specialization', specialization);
         formData.append('gender', gender);
         formData.append('experience', experience);
@@ -173,7 +171,7 @@ export class Doctor extends Component{
               doc_image: null,
             });
       
-          
+           
             const imageElement = document.getElementById('doc_image');
             if (imageElement) {
               imageElement.src = data.doc_image;
@@ -216,11 +214,10 @@ export class Doctor extends Component{
           } = this.state;
                  
         return(
-           
-<div>
-<Navbar />
+           <div>
+  <Navbar />
 
-            <div className="container">
+            <div className="container" style={{ backgroundImage: 'url("https://t4.ftcdn.net/jpg/05/98/60/81/240_F_598608101_mPdGSxcFrdy44xgPiuZFXY1kvDVrZVRc.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' , backdropFilter: 'blur(15px)', minHeight: '100vh', minWidth: '100%' }}>
  <h2 className="mb-4">Doctor List</h2>
 
 <div className="row">
@@ -237,6 +234,8 @@ export class Doctor extends Component{
           <p className="card-text">specialization: {doc.specialization}</p>
           <p className="card-text">Doctor Gender: {doc.gender}</p>
           <p className="card-text">Doctor Experience: {doc.experience}</p>
+          <p className="card-text">Doctor status: {doc.status}</p>
+
           <div className="btn-group" role="group">
           <td> <button type="button"
                 className="btn btn"
@@ -258,11 +257,90 @@ export class Doctor extends Component{
     </div>
   ))}
 </div>
+<div className="card mb-4 card-sm">
+  <div className="card-body">
+    <h5 className="card-title">Create New Doctor</h5>
+    <div className="form-group">
+      <label htmlFor="doctor_Name">Doctor Name:</label>
+      <input
+        type="text"
+        className="form-control"
+        id="doctor_Name"
+        value={doctor_Name}
+        onChange={this.handledocInputChange}
+      />
+    </div>
 
+    <div className="form-group">
+      <label htmlFor="doc_image">Doctor Image:</label>
+      <input
+        type="file"
+        className="form-control"
+        id="doc_image"
+        onChange={this.handleimageInputChange}
+      />
+    </div>
 
+    <div className="form-group">
+      <label htmlFor="specialization">specialization</label>
+      <input
+        type="text"
+        className="form-control"
+        id="specialization"
+        value={specialization}
+        onChange={this.handlespecInputChange}
+      />
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="gender">Doctor Gender:</label>
+      <input
+        type="text"
+        className="form-control"
+        id="gender"
+        value={gender}
+        onChange={this.handlegenderInputChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="experience">Doctor Experience:</label>
+      <input
+        type="number"
+        className="form-control"
+        id="experience"
+        value={experience}
+        onChange={this.handleexperiInputChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="experience">Username:</label>
+      <input
+        type="text"
+        className="form-control"
+        id="experience"
+        value={doc_name}
+        onChange={this.handleusernameInputChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="doc_password">Doctor doc_password:</label>
+      <input
+        type="text"
+        className="form-control"
+        id="doc_password"
+        value={doc_password}
+        onChange={this.handlepassInputChange}
+      />
+    </div>
+   
+    <button className="btn btn-primary" onClick={this.createItem}>
+      Create Doctor
+    </button>
+  </div>
+</div>
 <div className="card card-sm">
         <div className="card-body">
-          <h5 className="card-title">Edit Doctor   j</h5>
+          <h5 className="card-title">Edit Doctor</h5>
           <div className="form-group">
             <label htmlFor="doctor_Id">Doctor Id:</label>
             <input
@@ -345,12 +423,11 @@ export class Doctor extends Component{
             />
           </div>
 
-          
+        
           <button className="btn btn-primary" onClick={this.editItem}>
             Update Doctor
           </button>
         </div>
-       
       </div>
 </div>
 </div>

@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { variables } from "./Variable";
 import Navbar from './Navbar';
 
-class Patient extends Component  {
+class PatientById extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      patient_Id: "",
+      patient: null,
+      error: null,
       patients: [],
       patient_Id: 0,
       doctor_Id: 0,
@@ -18,105 +22,76 @@ class Patient extends Component  {
       address: "",
       user_name: "",
       user_password: ""
-
     };
   }
-
+  
   componentDidMount() {
-    this.fetchPatients();
-  }
+   
+      this.fetchPatientById();
+    }
+  
 
-  fetchPatients() {
+  fetchPatientById = () => {
+    const patient_Id = localStorage.getItem("patient_Id");
+
     axios
-      .get("https://localhost:7211/api/Patient", {
+      .get(`${variables.API_URL}Patient/${patient_Id}`, {
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       })
       .then((response) => {
-        const patients = response.data;
-        this.setState({ patients });
+        const patient = response.data;
+        this.setState({ patient });
       })
       .catch((error) => {
-        console.error("Error fetching patients:", error);
+        console.error("Error fetching patient by ID:", error);
       });
-  }
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { patient_Id } = this.state;
+    localStorage.setItem("patient_Id", patient_Id);
+    this.fetchPatientById(patient_Id);
+  };
+
+  handleInputsChange = (event) => {
+    this.setState({ patient_Id: event.target.value });
+  };
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  createPatient = () => {
-    const {
-      doctor_Id,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,    
-      address,
-      user_name,
-      user_password
-    } = this.state;
-
-    const patient = {
-      doctor_Id,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,
-      address,
-      user_name,
-      user_password
-    
-    };
-   
-
-    axios
-      .post("https://localhost:7211/api/Patient",patient, {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
-      })
-      .then((response) => {
-        console.log("Patient created:", response.data);
-        this.fetchPatients();
-        this.resetForm();
-      })
-      .catch((error) => {
-        console.error("Error creating patient:", error);
-      });
-  };
-
   updatePatient = () => {
     const {
-      patient_Id,
-      doctor_Id,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,
-      address,
-      user_name,
-      user_password
+        patient_Id,
+        doctor_Id,
+        patient_Name,
+        patient_Age,
+        gender,
+        health_Issue,
+        phone_number,
+        address,
+        user_name,
+        user_password
+       
+      } = this.state;
+  
+      const patient = {
+        doctor_Id,
+        patient_Id,
+        patient_Name,
+        patient_Age,
+        gender,
+        health_Issue,
+        phone_number,
+        address,
+        user_name,
+        user_password
      
-    } = this.state;
-
-    const patient = {
-      doctor_Id,
-      patient_Id,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,
-      address,
-      user_name,
-      user_password
-   
-    };
+      };
+  
 
 
     axios
@@ -137,7 +112,7 @@ class Patient extends Component  {
 
   deletePatient = (patient_Id) => {
     axios
-      .delete(`https://localhost:7211/api/Patient/${patient_Id}`, {
+      .delete(`https://localhost:7281/api/Patient/${patient_Id}`, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
@@ -154,46 +129,100 @@ class Patient extends Component  {
   resetForm = () => {
     this.setState({
       patient_Id: 0,
-      doctor_Id: 0,
+      doctor_id: 0,
       doctor: null,
-      patient_Name: "",
-      patient_Age: 0,
-      gender: "",
-      health_Issue:"",
-      phone_number: "", 
-      address: "",
-      user_name: "",
-      user_password: ""
+      patient_name: "",
+      patient_age: 0,
+      patient_gender: "",
+      medical_treatment:"",
+      phonenumber: "", 
+      patient_Address: "",
+      patient_Password:"",
       
     });
   };
 
   render() {
+    const { patient } = this.state;
     const {
-      patients,
-      patient_Id,
-      doctor_Id,
-      doctor,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,
-      address,
-      user_name,
-      user_password
-    
-    } = this.state;
+        patients,
+        patient_Id,
+        doctor_Id,
+        doctor,
+        patient_Name,
+        patient_Age,
+        gender,
+        health_Issue,
+        phone_number,
+        address,
+        user_name,
+        user_password
+      
+      } = this.state;
+  
+    return (
+        <div>
+            <Navbar />
+
+        <div className="container" style={{ backgroundImage: 'url("https://t4.ftcdn.net/jpg/05/98/60/81/240_F_598608101_mPdGSxcFrdy44xgPiuZFXY1kvDVrZVRc.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' , backdropFilter: 'blur(15px)', minHeight: '100vh', minWidth: '100%' }}>
+        <h2>Patient Details</h2>
+
+        {patient ? (
+          <table className="table">
+            <thead>
+              <tr>
+              <th>Patient Id</th>
+            <th>Patient Name</th>
+            <th>Patient Age</th>
+            <th>Gender</th>
+            <th>Patient Issue</th>
+            <th>Phone Number</th>
+            <th>Patient Address</th>
+            <th>Username</th>
+            <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={patient.patient_Id}>
+              <td>{patient.patient_Id}</td>
+              <td>{patient.patient_Name}</td>
+              <td>{patient.patient_Age}</td>
+              <td>{patient.gender}</td>
+              <td>{patient.health_Issue}</td>
+              <td>{patient.phone_number}</td>
+              <td>{patient.address}</td>
+              <td>{patient.user_name}</td>
+              <td>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => this.deletePatient(patient.patient_Id)}
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => this.setState(patient)}
+                >
+                  Update
+                </button>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        ) : (
+          <p>Loading patient details...</p>
+        )}
 
 
-return (
-  <div>
-  <Navbar />
+<div>
+
   <div className="container">
-    <h2>Patients</h2>
+    <h2> Edit Patients</h2>
 
     <div>
-      <h3>Add/Edit Patient</h3>
+      
       <form>
         <div className="mb-3">
           <label htmlFor="doctor_Id" className="form-label">
@@ -205,7 +234,7 @@ return (
             id="doctor_Id"
             name="doctor_Id"
             value={doctor_Id}
-            onChange={this.handleInputChange}
+            onChange={this.handleInputsChange}
           />
         </div>
         <div className="mb-3">
@@ -316,71 +345,26 @@ return (
 
         {patient_Id === 0 ? (
           <button type="button" className="btn btn-primary" onClick={this.createPatient}>
-            Add Patient
+            Update Patient
           </button>
         ) : (
           <button type="button" className="btn btn-primary" onClick={this.updatePatient}>
             Update Patient
           </button>
         )}
-
         <button type="button" className="btn btn-secondary" onClick={this.resetForm}>
           Cancel
         </button>
       </form>
     </div>
-
-    <div>
-      <h3>Patients List</h3>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Patient Id</th>
-            <th>Patient Name</th>
-            <th>Patient Age</th>
-            <th>Gender</th>
-            <th>Patient Issue</th>
-            <th>Phone Number</th>
-            <th>Patient Address</th>
-            <th>Username</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patients.map((patient) => (
-            <tr key={patient.patient_Id}>
-              <td>{patient.patient_Id}</td>
-              <td>{patient.patient_Name}</td>
-              <td>{patient.patient_Age}</td>
-              <td>{patient.gender}</td>
-              <td>{patient.health_Issue}</td>
-              <td>{patient.phone_number}</td>
-              <td>{patient.address}</td>
-              <td>{patient.user_name}</td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => this.deletePatient(patient.patient_Id)}
-                >
-                  Delete
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => this.setState(patient)}
-                >Update
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    </div>
+    
     </div>
   </div>
   </div>
-);
-}
+      
+    );
+  }
 }
 
-export default Patient;
+export default PatientById;

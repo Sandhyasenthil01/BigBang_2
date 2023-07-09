@@ -1,16 +1,25 @@
 import React from 'react';
+import Carousel from './Carasouel';
+import HoneycombCollage from './Honeycomg';
+import Navbar from './Navbar';
 
 const Home = () => {
-    
+  const slideItems = [
+    'image1.jpg',
+    'image2.jpg',
+    'image3.jpg',
+  ];  
   return (
-    
+    <div>
+            <Navbar />
+
     <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
      
       <div>
-      <h1 style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '24px' }}>Apollo Heart Institute Expertise</h1>
+      <h1 style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '50px' }}>Aishwarya Healthcare</h1>
 
       <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '18px' }}>
-        The Apollo Heart Institutes are regarded as one of the best heart hospitals in India,
+        The Aishwarya Institutes are regarded as one of the best  hospitals in India,
         performing a multitude of treatments and procedures in cardiology and cardiothoracic surgery.
         The scorecard shows an unmatched record of over 1,96,684 cardiac and cardiothoracic surgeries.
       </p><br></br><br></br><br></br>
@@ -56,12 +65,20 @@ const Home = () => {
       </div>
       <br></br>
     
-      <a href="/Patient" className="btn btn-primary">Register for patient</a>
+      <a href="/Patientreg" className="btn btn-primary" >Register for patient</a>
 
     </div>
     </div>
-
-    
+    <Carousel />
+    <br></br>
+    <HoneycombCollage />
+    <br></br>
+    <footer style={{ backgroundColor: '#f8f9fa', padding: '20px', textAlign: 'center' }}>
+    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', margin: '0' }}>
+      &copy; {new Date().getFullYear()} Aishwarya Healthcare. All rights reserved.
+    </p>
+  </footer>
+    </div>
   );
 };
 

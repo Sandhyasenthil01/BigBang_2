@@ -30,7 +30,9 @@ function Approveddoc() {
       };
     
       return (
-        <>
+        <div>
+       
+<div style={{ backgroundImage: 'url("https://t4.ftcdn.net/jpg/05/98/60/81/240_F_598608101_mPdGSxcFrdy44xgPiuZFXY1kvDVrZVRc.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' , backdropFilter: 'blur(15px)', minHeight: '100vh', minWidth: '100%' }}>
          <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "grey", color: "#fff" }}>
         <div className="container-fluid">
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +43,9 @@ function Approveddoc() {
 
             <li className="nav-item">
               <a className="nav-link" onClick={() => handleSectionClick('getDoctors')} style={{ color: "#fff", fontSize: "16px" }}>Activated Doctors</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/Patientreg" style={{ color: "#fff", fontSize: "16px" }}>Reegistration </a>
             </li>
            
           </ul>
@@ -58,8 +63,8 @@ function Approveddoc() {
           {activeSection === 'getDoctors' && (
             <div className="getDoctors">
               <section className="my-background-radial-gradient overflow-hidden">
-                <div className="my-doctors-container container">
-                  <div className="my-page-heading">
+            <div className="my-doctors-container container">
+              <div className="my-page-heading">
                     <h2>Activated Doctors</h2>
                     
                     <hr />
@@ -67,8 +72,8 @@ function Approveddoc() {
                   <div className="row row-cols-1 row-cols-md-3 g-4">
                       {doctors.map(doctor => (
                         <div key={doctor.doctor_Id} className="col">
-                        
-                          <div className="card my-bg-glass">
+                        <div className="card my-bg-glass my-card-hover">
+                        <div className="card-body">
                           <br/>
                           <img
                       src={`https://localhost:7211/uploads/${doctor.doc_image}`}
@@ -92,20 +97,23 @@ function Approveddoc() {
                   </span>
                   <span className="inline-block w-1/2">
                     <p className="text-sm text-gray-600">Experience: {doctor.experience} years</p>
-                    <p className="text-sm text-gray-600">user_name: {doctor.user_name}</p>
+                    <p className="text-sm text-gray-600">Doctor id: {doctor.doctor_Id}</p>
                     <p className="text-sm text-gray-600">Status: {doctor.status}</p>
                   </span>
                 </div>
               </div>
             </div>
           </div>   
+          </div>
       ))}
     </div>
                 </div>
+
               </section>
             </div>
           )}
-        </>
+          </div>
+          </div>
       ); 
                     }
                 

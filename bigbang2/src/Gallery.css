@@ -1,0 +1,52 @@
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container {
+    position: relative;
+    margin: 10px;
+    width: 300px;
+    height: 450px;
+    overflow: hidden;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s;
+  }
+  
+  .image-container:hover .gallery-image {
+    transform: scale(1.1);
+  }
+  
+  .image-container:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  .image-text {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .gallery-title {
+    margin-top: 20px;
+  }  

@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Navbar from './Navbar';
+  
+  import { Link } from "react-router-dom";
 
-class Patient extends Component  {
+class Patientreg extends Component  {
   constructor(props) {
     super(props);
     this.state = {
       patients: [],
+      Doctor:[],
       patient_Id: 0,
       doctor_Id: 0,
       doctor: null,
@@ -22,25 +25,12 @@ class Patient extends Component  {
     };
   }
 
+ 
+ 
   componentDidMount() {
-    this.fetchPatients();
-  }
+    this.fetchDoctor();
+}
 
-  fetchPatients() {
-    axios
-      .get("https://localhost:7211/api/Patient", {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
-      })
-      .then((response) => {
-        const patients = response.data;
-        this.setState({ patients });
-      })
-      .catch((error) => {
-        console.error("Error fetching patients:", error);
-      });
-  }
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -74,11 +64,7 @@ class Patient extends Component  {
    
 
     axios
-      .post("https://localhost:7211/api/Patient",patient, {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
-      })
+      .post("https://localhost:7211/api/Patient",patient)
       .then((response) => {
         console.log("Patient created:", response.data);
         this.fetchPatients();
@@ -89,68 +75,7 @@ class Patient extends Component  {
       });
   };
 
-  updatePatient = () => {
-    const {
-      patient_Id,
-      doctor_Id,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,
-      address,
-      user_name,
-      user_password
-     
-    } = this.state;
-
-    const patient = {
-      doctor_Id,
-      patient_Id,
-      patient_Name,
-      patient_Age,
-      gender,
-      health_Issue,
-      phone_number,
-      address,
-      user_name,
-      user_password
-   
-    };
-
-
-    axios
-      .put(`https://localhost:7211/api/Patient/${patient_Id}`, patient, {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
-      })
-      .then((response) => {
-        console.log("Patient updated:", response.data);
-        this.fetchPatients();
-        this.resetForm();
-      })
-      .catch((error) => {
-        console.error("Error updating patient:", error);
-      });
-  };
-
-  deletePatient = (patient_Id) => {
-    axios
-      .delete(`https://localhost:7211/api/Patient/${patient_Id}`, {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
-        }
-      })
-      .then((response) => {
-        console.log("Patient deleted:", response.data);
-        this.fetchPatients();
-      })
-      .catch((error) => {
-        console.error("Error deleting patient:", error);
-      });
-  };
-
+  
   resetForm = () => {
     this.setState({
       patient_Id: 0,
@@ -167,6 +92,22 @@ class Patient extends Component  {
       
     });
   };
+  fetchDoctor() {
+    axios.get('https://localhost:7211/api/Doctor/Accepted status')
+      .then((response) => {
+        const data = response.data;
+        const Doctor = data.map((Doctor) => {
+          const { Patient, ...rest } = Doctor;
+          return { ...rest, Patient };
+        });
+  
+        this.setState({ Doctor });
+      })
+      .catch((error) => {
+        console.error('Error fetching Doctors:', error);
+      });
+  }
+
 
   render() {
     const {
@@ -184,30 +125,44 @@ class Patient extends Component  {
       user_password
     
     } = this.state;
+    const { Doctor } = this.state;
 
 
 return (
   <div>
-  <Navbar />
+  <Navbar/>
+  <br></br>
+  <div style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/05/78/82/40/240_F_578824012_fBT61z1FImkRuVyzOTiCQIfz45y5XAHz.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' , backdropFilter: 'blur(15px)', minHeight: '100vh', minWidth: '100%' }}>
   <div className="container">
-    <h2>Patients</h2>
+  <div className="card card-sm">
+    <div className="card-body">
 
     <div>
-      <h3>Add/Edit Patient</h3>
+      <h3>Registration Patients</h3>
+      <Link type="button" className="btn btn-primary" to="/ApprovedDoc">Find doctors</Link>
+
       <form>
-        <div className="mb-3">
+     
+          <div className="mb-3">
           <label htmlFor="doctor_Id" className="form-label">
-            Doctor ID
+            Doctor
           </label>
-          <input
-            type="text"
+          <select
             className="form-control"
             id="doctor_Id"
             name="doctor_Id"
             value={doctor_Id}
             onChange={this.handleInputChange}
-          />
+          >
+            <option value="">Select Doctor</option>
+            {Doctor.map((doctor) => (
+              <option key={doctor.doctor_Id} value={doctor.doctor_Id}>
+                {doctor.doctor_Id} - {doctor.doctor_Name}
+              </option>
+            ))}
+          </select>
         </div>
+
         <div className="mb-3">
           <label htmlFor="doctor_Id" className="form-label">
           Patient Name
@@ -315,9 +270,9 @@ return (
         </div>
 
         {patient_Id === 0 ? (
-          <button type="button" className="btn btn-primary" onClick={this.createPatient}>
-            Add Patient
-          </button>
+          <Link type="button" className="btn btn-primary" onClick={this.createPatient} to={"/Login"}>
+            Register
+          </Link>
         ) : (
           <button type="button" className="btn btn-primary" onClick={this.updatePatient}>
             Update Patient
@@ -330,57 +285,16 @@ return (
       </form>
     </div>
 
-    <div>
-      <h3>Patients List</h3>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Patient Id</th>
-            <th>Patient Name</th>
-            <th>Patient Age</th>
-            <th>Gender</th>
-            <th>Patient Issue</th>
-            <th>Phone Number</th>
-            <th>Patient Address</th>
-            <th>Username</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patients.map((patient) => (
-            <tr key={patient.patient_Id}>
-              <td>{patient.patient_Id}</td>
-              <td>{patient.patient_Name}</td>
-              <td>{patient.patient_Age}</td>
-              <td>{patient.gender}</td>
-              <td>{patient.health_Issue}</td>
-              <td>{patient.phone_number}</td>
-              <td>{patient.address}</td>
-              <td>{patient.user_name}</td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => this.deletePatient(patient.patient_Id)}
-                >
-                  Delete
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => this.setState(patient)}
-                >Update
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+   </div>
+
+</div>  
+</div>
   </div>
   </div>
 );
 }
 }
 
-export default Patient;
+export default Patientreg;
+
+

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Navbar from './Navbar';
 
 function AdminPage() {
 
@@ -43,26 +44,32 @@ const fetchNotApprovedDoctors=()=>{
 
   return (
     <>
-     <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "grey", color: "#fff" }}>
-    <div className="container-fluid">
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav me-auto mb-1 mb-lg-0 justify-content-center">
-        <li className="nav-item">
-          <a className="nav-link" onClick={() => handleSectionClick('doctors')} style={{ color: "#fff", fontSize: "16px" }}>Requested Doctors</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" onClick={() => handleSectionClick('getDoctors')} style={{ color: "#fff", fontSize: "16px" }}>Activated Doctors</a>
-        </li>
-       
-      </ul>
-      <span className="navbar-text me-2" style={{ color: "#fff", fontSize: "16px", border: "1px solid #fff", padding: "5px 10px", borderRadius: "4px" }}>Admin Profile</span>
-    </div>
-  </div>
-</header>
-
+    <Navbar/>
+    <header className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "grey", color: "#fff" }}>
+        <div className="container-fluid">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav me-auto mb-1 mb-lg-0 justify-content-center">
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="doctorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: "#fff", fontSize: "16px" }}>
+                  Doctors
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="doctorsDropdown">
+                  <li><a className="dropdown-item" onClick={() => handleSectionClick('doctors')}>Requested Doctors</a></li>
+                  <li><a className="dropdown-item" onClick={() => handleSectionClick('getDoctors')}>Activated Doctors</a></li>
+                </ul>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/admincrud" style={{ color: "#fff", fontSize: "16px" }}>Edit Doctors</a>
+              </li>
+            </ul>
+            <span class="navbar-text" style={{ marginLeft: '10px', fontSize: '20px' }}>
+        <a class="nav-link" onClick={() => { localStorage.removeItem("token") }}  href="/home">Logout</a>
+      </span>          </div>
+        </div>
+      </header>
 
   
   
@@ -76,7 +83,8 @@ const fetchNotApprovedDoctors=()=>{
       )}
   
       {activeSection === 'doctors' && (
-        <div className="doctors">
+        <div style={{ backgroundImage: 'url("https://t4.ftcdn.net/jpg/05/59/79/11/240_F_559791137_JecfqH0O4QfrCqLoboVGMGxS5vHayQ58.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' , backdropFilter: 'blur(15px)', minHeight: '100vh', minWidth: '100%' }}>
+        <div className="doctors" >
           <section className="my-background-radial-gradient overflow-hidden">
             <div className="my-doctors-container container">
               <div className="my-page-heading">
@@ -104,7 +112,7 @@ const fetchNotApprovedDoctors=()=>{
                         </span>
                         <span className="inline-block w-1/2">
                           <p className="text-sm text-gray-600">Experience: {doctor.experience} years</p>
-                          <p className="text-sm text-gray-600">user_name: {doctor.user_name}</p>
+                          <p className="text-sm text-gray-600">doc_name: {doctor.doc_name}</p>
                           <p className="text-sm text-gray-600">Status: {doctor.status}</p>
                         </span>
                       </div><hr/>
@@ -171,9 +179,11 @@ const fetchNotApprovedDoctors=()=>{
             </div>
           </section>
         </div>
+        </div>
       )}
   
       {activeSection === 'getDoctors' && (
+        <div style={{ backgroundImage: 'url("https://t4.ftcdn.net/jpg/05/98/60/81/240_F_598608101_mPdGSxcFrdy44xgPiuZFXY1kvDVrZVRc.jpg")', backgroundPosition: 'center', backgroundSize: 'cover' , backdropFilter: 'blur(15px)', minHeight: '100vh', minWidth: '100%' }}> 
         <div className="getDoctors">
           <section className="my-background-radial-gradient overflow-hidden">
             <div className="my-doctors-container container">
@@ -210,17 +220,20 @@ const fetchNotApprovedDoctors=()=>{
               </span>
               <span className="inline-block w-1/2">
                 <p className="text-sm text-gray-600">Experience: {doctor.experience} years</p>
-                <p className="text-sm text-gray-600">user_name: {doctor.user_name}</p>
+                <p className="text-sm text-gray-600">doc_name: {doctor.doc_name}</p>
                 <p className="text-sm text-gray-600">Status: {doctor.status}</p>
               </span>
             </div>
           </div>
         </div>
       </div>   
+      
   ))}
 </div>
             </div>
+            
           </section>
+        </div>
         </div>
       )}
     </>

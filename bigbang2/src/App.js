@@ -11,39 +11,22 @@ import AdminPage from './Adminpage';
 import Home from './Home';
 import { RegisterDoctor } from './RegisterDoctor';
 import Approveddoc from './Approveddoc';
+import Homepage from './Homepage';
+import Patientreg from './Patientreg';
+import Doctorid from './Docid';
+import PatientById from './Patid';
+import { Admincrud } from './Admincrud';
 function App() {
   return (
 <div>
     <ToastContainer theme='colored'></ToastContainer>
     <BrowserRouter>
 
-    <nav class="navbar navbar-expand-lg "style={{ backgroundColor: 'LightBlue', color: '#FFFFFF' }} >
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="/Admin">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ApprovedDoc">approved doc</a>
-        </li>
-       
-      </ul>
-      <span class="navbar-text">
-        <a class="nav-link" href="/Login">Login</a>
-      </span><br/><br></br>
-      <span class="navbar-text">
-        <a class="nav-link" onClick={()=>{localStorage.removeItem("token")}}>Logout</a>
-      </span>
-    </div>
-  </div>
-</nav>
+  
+
 
  <Routes>
+ <Route path='/' Component={Home}/>
  <Route path='/home' Component={Home}/>
 
   <Route path='/doctor' Component={Doctor}/>
@@ -53,6 +36,14 @@ function App() {
   <Route path='/Adminpage' Component={AdminPage}/>
   <Route path='/RegDoc' Component={RegisterDoctor}/>
   <Route path='/ApprovedDoc' Component={Approveddoc}/>
+  <Route path='/Homepage' Component={Homepage}/>
+  <Route path='/Patientreg' Component={Patientreg}/>
+  <Route path='/docid' Component={Doctorid}/>
+  <Route path='/patid' Component={PatientById}/>
+  <Route path='/admincrud' Component={Admincrud}/>
+
+
+
 
 
 
